@@ -1,0 +1,45 @@
+<div>
+  <div *ngIf="movie; then showMovie else addMovie" ></div>
+  <ng-template #showMovie>
+    <p><b>Edit a Movie</b></p>
+    <p><em>Details will be instantly be saved as you make changes</em></p>
+    <div class="form-group">
+      <label>Title</label>
+      <input class="form-control" [(ngModel)]="movie.title" (blur)="validate([movie.title], movie.id)" />
+    </div>
+    <div class="form-group">
+        <label>Protagonist</label>
+        <input class="form-control" [(ngModel)]="movie.protagonist" (blur)="validate([movie.protagonist], movie.id)" />
+    </div>
+    <div class="form-group">
+      <label>Antagonist</label>
+      <input class="form-control" [(ngModel)]="movie.antagonist" (blur)="validate([movie.antagonist], movie.id)" />
+    </div>
+    <div>
+      <p></p>
+    </div>
+    <div>
+      <p style="cursor: pointer" (click)="showAddForm()"><u>Click here to add a movie</u></p>
+    </div>
+  </ng-template>
+  <ng-template #addMovie>
+      <p><b>Add a Movie</b></p>
+    <div class="form-group">
+      <label>Title</label>
+      <input class="form-control" [(ngModel)]="inputTitle" placeholder="Enter title" />
+    </div>
+    <div class="form-group">
+        <label>Protagonist</label>
+        <input class="form-control" [(ngModel)]="inputProtagonist" placeholder="Enter protagonist" />
+    </div>
+    <div class="form-group">
+      <label>Antagonist</label>
+      <input class="form-control" [(ngModel)]="inputAntagonist" placeholder="Enter antagonist" />
+    </div>
+    <div>
+      <button 
+        class="btn btn-primary btn-sm m-2"
+        (click)="add()">Add</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,43 @@
+<div class="card p-3 m-3">
+  <app-movie-form [movie]="clickedMovie" (flag)="willAdd()"></app-movie-form>
+</div>
+<div class="card p-3 m-3">
+  <h5 class="mt-3">Movies</h5>
+  <table class="table table-striped" *ngIf="movies.length > 0; else emptyState">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Protagonist</th>
+        <th>Antagonist</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr 
+        *ngFor="let movie of movies" 
+        class="movie-row"
+        [class.clicked]="movie === clickedMovie">
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.protagonist }}</td>
+        <td>{{ movie.antagonist }}</td>
+        <td>
+          <button 
+            class="btn btn-primary btn-sm"
+            (click)="onClick(movie)">
+            Edit
+          </button>
+        </td>
+        <td>
+          <button 
+            class="btn btn-danger btn-sm"
+            (click)="delete(movie)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #emptyState>
+    <p>There are no movies</p>
+  </ng-template>
+</div>
